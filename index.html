@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>دعوة</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      width: 100%;
+      min-height: 100vh;
+      background: #000;
+      overflow: hidden;
+      touch-action: none;
+    }
+
+    video {
+      width: 100%;
+      height: 100vh;
+      object-fit: contain;
+      display: block;
+
+      /* منع ظهور أدوات التحكم */
+      pointer-events: auto;
+    }
+
+    /* إخفاء أدوات التحكم في بعض المتصفحات */
+    video::-webkit-media-controls {
+      display: none !important;
+    }
+
+    video::-webkit-media-controls-enclosure {
+      display: none !important;
+    }
+  </style>
+</head>
+
+<body>
+
+  <video
+    id="invitationVideo"
+    autoplay
+    muted
+    playsinline
+    preload="auto">
+    
+    <source src="video.mp4" type="video/mp4">
+
+  </video>
+
+  <script>
+    const video = document.getElementById("invitationVideo");
+
+    // محاولة تشغيل الفيديو تلقائياً
+    video.play();
+
+    // عند الضغط بالإصبع: إيقاف الفيديو
+    document.addEventListener("touchstart", function() {
+      video.pause();
+    });
+
+    // عند رفع الإصبع: متابعة الفيديو
+    document.addEventListener("touchend", function() {
+      video.play();
+    });
+
+    // للكمبيوتر أيضاً
+    document.addEventListener("mousedown", function() {
+      video.pause();
+    });
+
+    document.addEventListener("mouseup", function() {
+      video.play();
+    });
+
+  </script>
+
+</body>
+</html>
